@@ -1,10 +1,11 @@
 class ReportsController < ApplicationController
   before_action :set_report, only: [:show, :edit, :update, :destroy]
+  before_action :auth_user
 
   # GET /reports
   # GET /reports.json
   def index
-    @reports = Report.all
+    @reports = Report.where(:user_id => current_user.id)
   end
 
   # GET /reports/1
@@ -70,5 +71,11 @@ class ReportsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def report_params
       params.require(:report).permit(:user_id, :title, :body)
+    end
+
+    def auth_user
+      if !current_user 
+        redirect_to new_user_session_path
+      end
     end
 end
