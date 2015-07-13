@@ -1,6 +1,6 @@
 class ReportsController < ApplicationController
   before_action :set_report, only: [:show, :edit, :update, :destroy]
-  before_action :auth_user
+  before_action :authenticate_user!
 
   # GET /reports
   # GET /reports.json
@@ -73,8 +73,8 @@ class ReportsController < ApplicationController
       params.require(:report).permit(:user_id, :title, :body)
     end
 
-    def auth_user
-      if !current_user 
+    def authenticate_user!
+      unless user_signed_in? 
         redirect_to new_user_session_path
       end
     end
