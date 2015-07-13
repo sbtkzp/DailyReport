@@ -46,3 +46,4 @@ end
 gem 'execjs'
 gem 'bootstrap-sass'
 gem 'devise'
+gem 'redcarpet'
