@@ -2,7 +2,8 @@
 
 <h1>Listing Reports</h1>
 
-<table>
+<div class="col-md-8">
+<table class="table">
   <thead>
     <tr>
       <th>User</th>
@@ -25,7 +26,8 @@
     <% end %>
   </tbody>
 </table>
+<%= link_to 'New Report', new_report_path %>
+</div>
 
 <br>
 
-<%= link_to 'New Report', new_report_path %>
